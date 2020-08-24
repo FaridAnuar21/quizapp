@@ -10,32 +10,20 @@ let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
-let questions = [
-    {
-        question: "Inside which HTML element do we put the Javascript ??",
-        choice1: "<script>",
-        choice2: "<javascript>",
-        choice3: "<js>",
-        choice4: "<scripting>",
-        answer: 1
-    },
-    {
-        question: "How do you write 'Hello World' in an alert box ??",
-        choice1: "msgBox('Hello World')",
-        choice2: "alertBox('Hello World')",
-        choice3: "msg('Hello World')",
-        choice4: "alert('Hello World')",
-        answer: 4
-    },
-    {
-        question: "How do you write 'Hai Dunia' in an alert box ??",
-        choice1: "msgBox('Hai Dunia')",
-        choice2: "alertBox('Hai Dunia')",
-        choice3: "msg('Hai Dunia')",
-        choice4: "alert('Hai Dunia')",
-        answer: 4
-    }
-];
+let questions = [];
+
+fetch("questions.json")
+.then( res => {
+    return res.json();
+})
+.then(loadedQuestions => {
+    console.log(loadedQuestions);
+    questions = loadedQuestions;
+    startGame();
+})
+.catch (err => {
+    console.error(err);
+});
 
 //CONSTANTS
 
@@ -111,6 +99,3 @@ incrementScore = num => {
     score +=num;
     scoreText.innerText = score;
 }
-
-startGame();
-
