@@ -112,3 +112,5 @@ incrementScore = num => {
 }
 
 startGame();
+
+// update
